@@ -31,10 +31,10 @@ void setup() {
   Wire.begin(21, 20);
 
   if (!mpu.begin()) {
-    Serial.println("❌ MPU6050 no detectado");
+    Serial.println("MPU6050 no detectado");
     while (1);
   }
-  Serial.println("✅ MPU6050 OK");
+  Serial.println("MPU6050 OK");
 
   mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
   mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
