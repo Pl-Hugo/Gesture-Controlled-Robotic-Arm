@@ -1,6 +1,7 @@
 # Gesture-Controlled-Robotic-Arm
 Step by step, to made a Prosthetic Hand with esp32
-##Abstract
+
+# Abstract
 This project develops an intuitive control system for a robotic arm, designed for industrial robotics and teleoperation. The primary objective is to replace traditional rigid interfaces with a natural human-machine interaction (HMI) based on the user’s actual movement.
 
 The system is built upon two technological pillars:
@@ -9,7 +10,7 @@ The system is built upon two technological pillars:
 
 System management is handled via ESP32 microcontrollers, utilizing Bluetooth connectivity to ensure low latency and responsive performance. This project demonstrates the feasibility of creating powerful, sustainable, and low-cost teleoperation solutions suitable for hazardous environments or ergonomic assistance.
 
-##Resumen
+# Resumen
 Este proyecto desarrolla un sistema de control intuitivo para un brazo robótico, orientado a la robótica industrial y teleoperación. El objetivo central es sustituir interfaces rígidas por una interacción hombre-máquina natural basada en el movimiento real del usuario.
 
 El sistema se fundamenta en dos ejes tecnológicos:
