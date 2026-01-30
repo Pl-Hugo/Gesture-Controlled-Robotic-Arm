@@ -1,21 +1,25 @@
 # Gesture-Controlled-Robotic-Arm
-Step by step, to made a Prosthetic Hand with esp32
+### Development of a biomimetic prosthetic hand and arm control system using ESP32
 
-# Abstract
-This project develops an intuitive control system for a robotic arm, designed for industrial robotics and teleoperation. The primary objective is to replace traditional rigid interfaces with a natural human-machine interaction (HMI) based on the user’s actual movement.
+## Abstract
+This project presents an intuitive control system for a robotic arm and prosthetic hand, designed for applications in industrial robotics, teleoperation, and assistive technology. The primary objective is to transcend traditional rigid interfaces by implementing a natural Human-Machine Interaction (HMI) based on the user's physiological and kinematic data.
 
-The system is built upon two technological pillars:
--Accelerometers: They capture the operator’s orientation and angular movement, allowing the robot to replicate these actions in real-time (mirroring).
--EMG Sensors: They detect muscle electrical activity to precisely control the opening and closing of the gripper.
+The system architecture is built upon two technological pillars:
+* **Inertial Measurement (IMU/Accelerometers):** Captures the operator's orientation and angular displacement, enabling the robot to replicate arm movements in real-time (mirroring).
+* **Electromyography (EMG) Sensors:** Detects muscle electrical activity to provide proportional control over the gripper's opening and closing mechanisms.
 
-System management is handled via ESP32 microcontrollers, utilizing Bluetooth connectivity to ensure low latency and responsive performance. This project demonstrates the feasibility of creating powerful, sustainable, and low-cost teleoperation solutions suitable for hazardous environments or ergonomic assistance.
+A key innovation of this project is the distributed processing system using **dual ESP32 microcontrollers** linked via the **ESP-NOW protocol**. This configuration ensures ultra-low latency (under 500ms) and high-speed data transmission without the overhead of traditional network infrastructures, proving the feasibility of high-performance, low-cost teleoperation in hazardous environments or ergonomic assistance.
 
-# Resumen
-Este proyecto desarrolla un sistema de control intuitivo para un brazo robótico, orientado a la robótica industrial y teleoperación. El objetivo central es sustituir interfaces rígidas por una interacción hombre-máquina natural basada en el movimiento real del usuario.
+---
 
-El sistema se fundamenta en dos ejes tecnológicos:
--Acelerómetros: Capturan la orientación y el movimiento angular del brazo del operario, permitiendo que el robot replique estas acciones en tiempo real (mirroring).
--Sensores EMG: Detectan la actividad eléctrica muscular para controlar de forma precisa la apertura y cierre de la pinza.
+## Resumen
+Este proyecto desarrolla un sistema de control intuitivo para un brazo robótico y mano protésica, orientado a la robótica industrial, teleoperación y tecnologías de asistencia. El objetivo central es superar las interfaces rígidas tradicionales mediante la implementación de una Interacción Hombre-Máquina (HMI) natural, basada en los datos fisiológicos y cinemáticos del usuario.
 
-La gestión del sistema se realiza mediante placas ESP32, utilizando su conectividad Bluetooth para garantizar una baja latencia y una respuesta ágil. El proyecto demuestra la viabilidad de crear soluciones de telecontrol potentes, sostenibles y de bajo coste, aplicables en entornos peligrosos o de asistencia ergonómica.
-# License type
+El sistema se fundamenta en dos ejes tecnológicos principales:
+* **Medición Inercial (IMU/Acelerómetros):** Capturan la orientación y el movimiento angular del operario, permitiendo que el robot replique estas acciones en tiempo real (mirroring).
+* **Sensores EMG:** Detectan la actividad eléctrica muscular para controlar de forma precisa la apertura y cierre de la pinza o mano.
+
+Una innovación clave de este proyecto es el sistema de procesamiento distribuido mediante **dos microcontroladores ESP32** vinculados a través del protocolo **ESP-NOW**. Esta configuración garantiza una latencia ultra baja (menor a 500ms) y una transmisión de datos de alta velocidad sin la carga de las infraestructuras de red tradicionales, demostrando la viabilidad de soluciones de telecontrol de alto rendimiento y bajo coste para entornos peligrosos o asistencia ergonómica.
+
+## License
+[Insertar tipo de licencia, ej: MIT]
