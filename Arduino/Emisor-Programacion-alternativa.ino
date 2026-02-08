@@ -30,7 +30,7 @@ void setup() {
   delay(100);
 
   // I2C (los que te funcionan)
-  Wire.begin(21, 22);   // SDA, SCL
+  Wire.begin(21, 20);   // SDA, SCL
   Wire.setClock(100000);
 
   // Wake up MPU6050

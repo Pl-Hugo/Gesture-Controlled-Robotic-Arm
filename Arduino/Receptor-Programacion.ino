@@ -2,59 +2,66 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-Servo servoX; // izquierda/derecha → pin 23
-Servo servoY; // arriba/abajo → pin 19
+// ===== Servos =====
+Servo servoBrazo; // pin 23
+Servo servoBase;  // pin 19
+Servo servoAnte;  // pin 18
 
-typedef struct struct_message {
-  int8_t ejeX;
-  int8_t ejeY;
-} struct_message;
+// ===== Estructura IGUAL al emisor =====
+typedef struct {
+  int base;
+  int brazo;
+  int ante;
+} ControlData;
 
-struct_message datosRecibidos;
+ControlData datosRecibidos;
 
-// Posición original
-int posX = 90;
-int posY = 90;
+// ===== Callback ESP-NOW =====
+void OnDataRecv(const esp_now_recv_info * info, const uint8_t *incomingData, int len) {
+  if (len != sizeof(ControlData)) return; // seguridad
 
-void OnDataRecv(const esp_now_recv_info * info, const uint8_t *incomingData, int len){
   memcpy(&datosRecibidos, incomingData, sizeof(datosRecibidos));
 
-  // Mover servo X (izquierda/derecha)
-  if(datosRecibidos.ejeX == 1) servoX.write(posX + 90);
-  else if(datosRecibidos.ejeX == -1) servoX.write(posX - 90);
-  else servoX.write(posX);
+  // Mover servos directamente
+  servoBase.write(constrain(datosRecibidos.base, 0, 180));
+  servoBrazo.write(constrain(datosRecibidos.brazo, 0, 180));
+  servoAnte.write(constrain(datosRecibidos.ante, 0, 180));
 
-  // Mover servo Y (arriba/abajo)
-  if(datosRecibidos.ejeY == 1) servoY.write(posY + 90);
-  else if(datosRecibidos.ejeY == -1) servoY.write(posY - 90);
-  else servoY.write(posY);
+  // Debug
+  Serial.print("Base: ");
+  Serial.print(datosRecibidos.base);
+  Serial.print("  Brazo: ");
+  Serial.print(datosRecibidos.brazo);
+  Serial.print("  Ante: ");
+  Serial.println(datosRecibidos.ante);
 }
 
 void setup() {
   Serial.begin(115200);
 
-  servoX.attach(23);
-  servoY.attach(19);
+  // ===== Attach servos =====
+  servoBrazo.attach(23);
+  servoBase.attach(19);
+  servoAnte.attach(18);
 
-  servoX.write(posX);
-  servoY.write(posY);
+  // Posición inicial
+  servoBase.write(90);
+  servoBrazo.write(90);
+  servoAnte.write(90);
 
+  // ===== ESP-NOW =====
   WiFi.mode(WIFI_STA);
 
-  if (esp_now_init() != ESP_OK) Serial.println("Error inicializando ESP-NOW");
-
-  esp_now_peer_info_t peerInfo = {};
-  // MAC del emisor
-  uint8_t macPeer[] = {0x00, 0x4B, 0x12, 0x34, 0x4D, 0x70};
-  memcpy(peerInfo.peer_addr, macPeer, 6);
-  peerInfo.channel = 0;
-  peerInfo.encrypt = false;
-  esp_now_add_peer(&peerInfo);
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error inicializando ESP-NOW");
+    return;
+  }
 
   esp_now_register_recv_cb(OnDataRecv);
 
-  Serial.println("ESP32 RECEPTOR listo (servos + ESP-NOW)");
+  Serial.println("ESP32 RECEPTOR listo (Base / Brazo / Ante)");
 }
 
-void loop() {}
-
+void loop() {
+  // vacío
+}
